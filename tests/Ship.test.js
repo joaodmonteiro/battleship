@@ -1,4 +1,4 @@
-const Ship = require('./Ship');
+const Ship = require('../scripts/Ship');
 
 test('isSunk', () => {
     expect(Ship(3).isSunk()).toBe(false);

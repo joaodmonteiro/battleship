@@ -7,6 +7,12 @@ const userGameboard = Gameboard();
 
 userGameboard.placeShipsRandom();
 
+userGameboard.emptyCells.forEach(cell => {
+    const emptyCell = document.getElementById(`user-cell-${cell[0]}${cell[1]}`);
+    emptyCell.style.background = 'red';
+});
+
+
 // generate random PC ship layout
 // Let user place his ships
 // Click start
