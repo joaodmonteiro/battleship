@@ -1,0 +1,53 @@
+h1 {
+    text-align: center;
+}
+
+.game {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    margin-top: 50px;
+}
+
+.outer-board {
+    display: grid;
+    grid-template-areas: "letters letters"
+                         "numbers board";
+    background-color: rgb(235, 235, 235);
+    border-radius: 20px;
+    padding: 50px;
+    max-width: 100%;
+}
+
+.letters {
+    display: grid;
+    grid-area: letters;
+    grid-template-columns: repeat(10, 50px);
+    margin-left: 58px;
+    margin-bottom: 15px;
+}
+
+.numbers {
+    display: grid;
+    grid-area: numbers;
+    grid-template-rows: repeat(10, 50px);
+    margin-top: 20px;
+}
+
+.board {
+    display: grid;
+    grid-area: board;
+    grid-template-columns: repeat(10, 1fr);
+    box-sizing: border-box;
+    outline: 2px solid black;
+    width: 500px;
+    height: 500px;
+}
+
+.cell {
+    box-sizing: border-box;
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    text-align: center;
+}
