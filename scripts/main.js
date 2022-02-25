@@ -1,18 +1,61 @@
-import { createGameboards } from './DOM.js';
+import { createGameboards, updateDOM } from './DOM.js';
 import { Gameboard } from './Gameboard.js';
 
+// Display the boards
 createGameboards();
 
-const userGameboard = Gameboard();
+// Create gameboards
+const pcGameboard = Gameboard('pc');
+const userGameboard = Gameboard('user');
 
+pcGameboard.placeShipsRandom();
 userGameboard.placeShipsRandom();
 
-userGameboard.emptyCells.forEach(cell => {
-    const emptyCell = document.getElementById(`user-cell-${cell[0]}${cell[1]}`);
-    emptyCell.style.background = 'red';
+// Show empty cells
+
+
+
+updateDOM(userGameboard, pcGameboard);
+
+
+// Let user move his ships
+
+// > Click START GAME
+
+let turn = 'user';
+
+const cells = document.querySelectorAll('.cell');
+
+cells.forEach(cell => {
+    cell.addEventListener('click', () => {
+        if(cell.id.slice(0, 2) == 'pc') {
+            if(turn == 'user') {
+                let hit = pcGameboard.getAttacked(getCellFromID(cell.id)); 
+    
+                if(hit) {
+                    updateDOM(userGameboard, pcGameboard);
+                    turn = 'pc';
+                    // PC PLAY
+                    pcPlay();
+                }
+            }
+            console.log('success hits:');
+            console.log(pcGameboard.successHits);
+            console.log('verified empty');
+            console.log(pcGameboard.verifiedEmpty);
+        }
+    });
 });
 
+function pcPlay() {
+    turn = 'user';
+}
 
+function getCellFromID(id) {
+    const x = id.slice(-2, -1);
+    const y = id.slice(-1);
+    return [x, y];
+}
 // generate random PC ship layout
 // Let user place his ships
 // Click start
