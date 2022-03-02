@@ -1,4 +1,4 @@
-const Ship = (length) => {
+const Ship = (length, location, orientation) => {
     let sunk = false;
     let hitOn = 0;
 
@@ -18,7 +18,7 @@ const Ship = (length) => {
         return sunk;
     }
 
-    return {length, isSunk, getHit}
+    return {length, location, orientation, isSunk, getHit}
 }
 
 export { Ship };
